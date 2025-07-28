@@ -30,7 +30,7 @@ A VPC é a rede privada e isolada para nossos recursos.
 2.  **AMI e Sistema Operacional:** Escolha uma imagem como **Ubuntu** ou **Amazon Linux 2023**.
 3.  **Par de Chaves:** Crie um novo par de chaves (`.pem`) e salve o arquivo em um local seguro no seu computador. Ele é essencial para o acesso SSH.
 4.  **Configurações de Rede:**
-    * Selecione a **VPC** criada no passo anterior[cite: 16].
+    * Selecione a **VPC** criada no passo anterior.
     * Escolha uma das **sub-redes públicas** para a instância.
     * Habilite a opção **"Atribuir IP público automaticamente"**.
 
