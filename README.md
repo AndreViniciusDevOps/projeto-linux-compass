@@ -142,8 +142,6 @@ nano monitor.sh
 Copie e cole o código abaixo dentro do editor `nano`. Este script verifica o site, registra o status no log e envia um alerta para o Discord em caso de falha.
 
 
-<img width="604" height="108" alt="image" src="https://github.com/user-attachments/assets/e16e946b-41e5-4a35-b7b6-ba5a7c38f54a" />
-
 
 
 ```bash
@@ -152,23 +150,25 @@ Copie e cole o código abaixo dentro do editor `nano`. Este script verifica o si
 # --- Configurações ---
 URL="http://localhost"
 LOG_FILE="/var/log/monitoramento.log"
-WEBHOOK_URL="cole sua webhook aqui"
-
+WEBHOOK_URL="COLE SEU WEBHOOK AQUI>
 # --- Início do Script ---
 HTTP_STATUS=$(curl -o /dev/null -s -w "%{http_code}" $URL)
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
 if [ $HTTP_STATUS -eq 200 ]; then
-    # Site OK
-    echo "[$TIMESTAMP] SUCESSO: Site está no ar. Status: $HTTP_STATUS" >> $LOG_FILE
+    # Site OK: registrar e notificar
+    MESSAGE="✅ SUCESSO: Site está no ar. Status: $HTTP_STATUS"
+    echo "[$TIMESTAMP] $MESSAGE" >> $LOG_FILE
+
+    # Envia notificação de SUCESSO para o Discord
+    curl -H "Content-Type: application/json" -d "{\"content\": \"$MESSAGE\"}" "$WEBHOOK_URL"
 else
     # Site com Falha: registrar e notificar
-    MESSAGE="FALHA: Site pode estar fora do ar ou com erro. Status: $HTTP_STATUS"
+    MESSAGE="🚨 FALHA: Site está fora do ar ou com erro. Status: $HTTP_STATUS"
     echo "[$TIMESTAMP] $MESSAGE" >> $LOG_FILE
-    
-    # Envia notificação para o Discord
-    curl -H "Content-Type: application/json" -d "{\"content\": \"🚨 Alerta: $MESSAGE\"}" $WEBHOOK_URL
-fi
+
+    # Envia notificação de FALHA para o Discord
+    curl -H "Content-Type: application/json" -d "{\"content\": \"$MESSAGE\"}" "$WEBHOOK_URL"
 ```
 Para salvar e sair do `nano`, pressione `Ctrl + X`, depois `Y` e `Enter`.
 
