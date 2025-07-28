@@ -141,6 +141,7 @@ nano monitor.sh
 
 Copie e cole o código abaixo dentro do editor `nano`. Este script verifica o site, registra o status no log e envia um alerta para o Discord em caso de falha.
 
+<img width="1098" height="550" alt="image" src="https://github.com/user-attachments/assets/ac1fa9f7-8fc5-4614-9c1b-56d32196026a" />
 
 
 
