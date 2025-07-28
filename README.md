@@ -44,8 +44,8 @@ Durante a criação da instância, crie um novo Security Group com as seguintes 
 
 Após a instância ser criada, a conexão é feita via terminal.
 
-1.  Ajuste as permissões do arquivo da chave (execute este comando no seu terminal local, na pasta onde salvou a chave):
-    ```bash (Caso esteja utilizando WSL)
+1.  Ajuste as permissões do arquivo da chave (execute este comando no seu terminal local, na pasta onde salvou a chave, se você estiver usando WSL):
+    ```bash 
     chmod 400 sua-chave.pem
     ```
 2.  Conecte-se à instância usando o comando SSH, substituindo os valores necessários:
