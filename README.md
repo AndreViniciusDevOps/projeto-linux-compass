@@ -216,3 +216,27 @@ Para validar a implementação, foram realizados os seguintes testes:
 ### **Aviso de Segurança**
 
 **Cuidado com dados que podem comprometer a segurança**. A URL do Webhook do Discord é uma informação sensível e não deve ser exposta em repositórios públicos.
+
+
+
+---
+
+
+### Automação com User Data
+
+Como um passo adicional de automação, a configuração da instância EC2 foi implementada utilizando o recurso **User Data**. O objetivo foi criar uma instância que se autoconfigura no momento do lançamento, eliminando a necessidade de acesso SSH para a instalação inicial.
+
+Um único script de shell foi passado para a instância durante sua criação. Este script executa todas as tarefas de configuração necessárias:
+* Atualiza os pacotes do sistema e instala o Nginx.
+* Cria a página HTML personalizada no diretório `/var/www/html/`.
+* Cria o script de monitoramento `monitor.sh` na pasta do usuário `ubuntu`.
+* Define as permissões de execução para o script e de escrita para o arquivo de log.
+* Configura o `cron` para executar o script de monitoramento a cada minuto, garantindo a verificação contínua do serviço.
+
+O resultado é uma implantação "zero-touch", onde a instância se torna totalmente funcional poucos minutos após ser lançada, sem qualquer intervenção manual.
+Para automatizar o processo, o usuário deve inicar uma nova EC2 e rolar até a opção Dados do usuário. Após isso colar o script do *MESMO PROJETO ANTERIOR* e executar a instancia que o processo segue automatizado conforme as instruções anteriores.
+
+
+# COLE O CÓDIGO NO CAMPO EM BRANCO ABAIXO
+<img width="1903" height="911" alt="image" src="https://github.com/user-attachments/assets/36b4c6e4-6409-44a4-95e6-1b67b52e5998" />
+
